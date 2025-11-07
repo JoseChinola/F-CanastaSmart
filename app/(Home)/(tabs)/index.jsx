@@ -2,8 +2,9 @@ import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import colors from "@/constants/theme/colors";
 import useColorScheme from "@/hooks/use-color-scheme";
 import { useUser } from "@/hooks/useUser";
-import HomeUser from "@/Screens/HomeUser";
+import HomeUser from "@/screens/HomeUser";
 import { ActivityIndicator, Image, Text, View } from "react-native";
+
 
 export default function Index() {
     const colorScheme = useColorScheme();

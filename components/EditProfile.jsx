@@ -140,7 +140,7 @@ export default function EditProfile({ user, onSave }) {
 
                     <TouchableOpacity
                         onPress={handleSelectImage}
-                        className="flex-row items-center gap-2 shadow-sm shadow-gray-800 dark:shadow-amber-50 bg-blue-100 dark:bg-blue-900/40 px-4 py-2 rounded-full"
+                        className="flex-row items-center gap-2 shadow-sm shadow-gray-800 dark:shadow-amber-50 bg-blue-100 dark:bg-blue-800/40 px-4 py-2 rounded-full"
                     >
                         <Ionicons name="camera-outline" size={18} color="#2563eb" />
                         <Text className="text-blue-600 dark:text-blue-400 font-medium text-sm ">

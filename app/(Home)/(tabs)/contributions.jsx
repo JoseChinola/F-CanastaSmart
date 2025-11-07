@@ -95,7 +95,7 @@ export default function Contributions() {
                 reports.map((r) => (
                     <View
                         key={r.id}
-                        className="bg-gray-100 dark:bg-gray-700 rounded-3xl mb-4 shadow-neumorph overflow-hidden shadow-sm shadow-gray-800 dark:shadow-gray-50"
+                        className="bg-gray-100 dark:bg-gray-700 rounded-3xl mb-6 shadow-neumorph overflow-hidden shadow-sm shadow-gray-800 dark:shadow-gray-50"
                     >
                         {/* Header del Card */}
                         <TouchableOpacity

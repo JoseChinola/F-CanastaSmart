@@ -1,9 +1,8 @@
 import colors from '@/constants/theme/colors';
 import useColorScheme from '@/hooks/use-color-scheme';
 import { useUser } from '@/hooks/useUser';
-import { Stack, useRouter } from 'expo-router';
-import { useEffect } from 'react';
-import { ActivityIndicator, StatusBar, View } from 'react-native';
+import { Redirect, Stack } from 'expo-router';
+import { ActivityIndicator, View } from 'react-native';
 
 
 export default function AuthLayout() {
@@ -12,13 +11,7 @@ export default function AuthLayout() {
 
     const theme = colorScheme === "dark" ? colors.dark : colors.light;
 
-    const router = useRouter();
-
-    useEffect(() => {
-        if (!loading && user) {
-            router.replace('/(Home)');
-        }
-    }, [user, loading, router]);
+    if (!loading && user) return <Redirect href={'/'} />
 
     // Mientras carga user, mostrar loader para evitar "flash" de auth screens
     if (loading || user) {
@@ -37,17 +30,5 @@ export default function AuthLayout() {
     }
 
 
-    return (
-        <>
-            <StatusBar barStyle="default" />
-            <Stack screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="login" options={{ headerShown: false }} />
-                <Stack.Screen name="register" options={{ headerShown: false }} />
-                <Stack.Screen name="forgotPassword" options={{ headerShown: false }} />
-                <Stack.Screen name="resetPassword" options={{ headerShown: false }} />
-                <Stack.Screen name="verifyOTP" options={{ headerShown: false }} />
-                <Stack.Screen name="verifyEmail" options={{ headerShown: false }} />
-            </Stack>
-        </>
-    );
+    return <Stack screenOptions={{ headerShown: false }} />
 }

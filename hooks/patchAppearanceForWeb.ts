@@ -2,9 +2,7 @@ import { Appearance, ColorSchemeName, Platform } from "react-native";
 
 export function patchAppearanceForWeb() {
     if (Platform.OS !== "web") return;
-
-    console.log("Este es look")
-
+    
     const initTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
