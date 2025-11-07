@@ -17,8 +17,6 @@ export default function RootLayout() {
     return (
         <AuthProvider>
             <StatusBar barStyle="default" />
-            {/* <SafeAreaView className='flex-1 dark:bg-gray-900 bg-gray-50'>
-            </SafeAreaView> */}
             <Slot />
             <Toast config={toastConfig} />
         </AuthProvider>

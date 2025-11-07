@@ -1,8 +1,8 @@
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
+import HomeUser from "@/components/screens/HomeUser";
 import colors from "@/constants/theme/colors";
 import useColorScheme from "@/hooks/use-color-scheme";
 import { useUser } from "@/hooks/useUser";
-import HomeUser from "@/screens/HomeUser";
 import { ActivityIndicator, Image, Text, View } from "react-native";
 
 

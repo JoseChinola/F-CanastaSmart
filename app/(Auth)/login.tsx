@@ -109,7 +109,7 @@ export default function LoginScreen() {
                             `}
                         />
                         <TouchableOpacity
-                            className="absolute right-4 top-4 bg-red-600"
+                            className="absolute right-4 top-4"
                             onPress={() => setShowPassword(!showPassword)}
                         >
                             <Ionicons
