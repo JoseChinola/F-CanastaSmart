@@ -69,7 +69,7 @@ export default function LoginScreen() {
                         source={{ uri: 'https://png.pngtree.com/png-clipart/20190611/original/pngtree-wolf-logo-png-image_2306634.jpg' }}
                         className="w-24 h-24 mb-4 rounded-full"
                     />
-                    <Text className="text-3xl font-bold text-center text-black dark:text-white">
+                    <Text className="text-4xl font-bold text-center text-black dark:text-white">
                         Canasta Smart
                     </Text>
                     <Text className="text-gray-500 dark:text-gray-400 text-center mt-2 text-sm">
@@ -78,7 +78,7 @@ export default function LoginScreen() {
                 </View>
 
                 {/* Inputs */}
-                <View className="mb-">
+                <View className="mb-4">
                     <TextInput
                         placeholder="Correo electrónico"
                         placeholderTextColor={theme.muted}
@@ -93,6 +93,7 @@ export default function LoginScreen() {
                             ${emailFocus ? 'shadow-lg' : 'shadow-md'}
                         `}
                     />
+                    
                     <View className="relative w-full mb-4">
                         <TextInput
                             placeholder="Contraseña"
@@ -108,7 +109,7 @@ export default function LoginScreen() {
                             `}
                         />
                         <TouchableOpacity
-                            className="absolute right-4 top-4"
+                            className="absolute right-4 top-4 bg-red-600"
                             onPress={() => setShowPassword(!showPassword)}
                         >
                             <Ionicons

@@ -19,6 +19,6 @@
     "expo-env.d.ts",
     "nativewind-env.d.ts",
     "app/(Home)/(tabs)/profile/profile.jsx",
-    "screens/Dashboard.jsx"
+    "components/screens/Dashboard.jsx"
   ]
 }
