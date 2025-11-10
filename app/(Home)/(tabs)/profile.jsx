@@ -8,7 +8,7 @@ import { ActivityIndicator, Image, Text, TouchableOpacity, View } from "react-na
 
 export default function Profile() {
     const colorScheme = useColorScheme();
-    const { user, loading } = useUser();
+    const { user, loading, logout } = useUser();
     const theme = colorScheme === "dark" ? colors.dark : colors.light;
 
     if (loading) {
@@ -40,6 +40,15 @@ export default function Profile() {
         month: "long",
         day: "numeric",
     });
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            router.replace("/login");
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+        }
+    };
 
     return (
         <DashboardLayout title="Mi perfil">
@@ -168,18 +177,15 @@ export default function Profile() {
                     <Ionicons name="chevron-forward" size={18} color={theme.primary} />
                 </TouchableOpacity>
 
-            <TouchableOpacity
-                className="flex-row items-center justify-center bg-red-50 dark:bg-red-900 rounded-2xl p-4 shadow-sm shadow-red-300 dark:shadow-red-800 active:opacity-80"
-                onPress={() => {
-                    // 🔐 Aquí puedes agregar la lógica de logout
-                    console.log("Cerrando sesión...");
-                }}
-            >
-                <Ionicons name="log-out-outline" size={22} color="#EF4444" />
-                <Text className="ml-2 text-red-600 dark:text-red-400 font-medium text-base">
-                    Cerrar sesión
-                </Text>
-            </TouchableOpacity>    
+                <TouchableOpacity
+                    className="flex-row items-center justify-center bg-red-50 dark:bg-red-900 rounded-2xl p-4 shadow-sm shadow-red-300 dark:shadow-red-800 active:opacity-80"
+                    onPress={handleLogout}
+                >
+                    <Ionicons name="log-out-outline" size={22} color="#EF4444" />
+                    <Text className="ml-2 text-red-600 dark:text-red-400 font-medium text-base">
+                        Cerrar sesión
+                    </Text>
+                </TouchableOpacity>
             </View>
 
         </DashboardLayout >

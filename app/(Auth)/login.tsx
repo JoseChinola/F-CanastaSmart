@@ -1,11 +1,11 @@
 import colors from '@/constants/theme/colors';
 import useColorScheme from "@/hooks/use-color-scheme";
+import { useUser } from '@/hooks/useUser';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Toast from 'react-native-toast-message';
-import { useUser } from '../../hooks/useUser';
 
 export default function LoginScreen() {
     const colorScheme = useColorScheme();
@@ -58,99 +58,115 @@ export default function LoginScreen() {
     };
 
     return (
-        <KeyboardAvoidingView
-            className="flex-1 justify-center items-center px-4 bg-gray-50 dark:bg-gray-900"
-            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        <View
+            className='flex-1 bg-gray-50 dark:bg-gray-900'
         >
-            <View className="w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg" style={{ width: Platform.OS === 'web' ? 420 : '100%' }}>
-                {/* Logo e identidad */}
-                <View className="flex-1 justify-center items-center mb-8">
-                    <Image
-                        source={{ uri: 'https://png.pngtree.com/png-clipart/20190611/original/pngtree-wolf-logo-png-image_2306634.jpg' }}
-                        className="w-24 h-24 mb-4 rounded-full"
-                    />
-                    <Text className="text-4xl font-bold text-center text-black dark:text-white">
-                        Canasta Smart
-                    </Text>
-                    <Text className="text-gray-500 dark:text-gray-400 text-center mt-2 text-sm">
-                        Accede a tu cuenta para continuar
-                    </Text>
-                </View>
+            <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0} // ajusta según tu header
+            >
+                <ScrollView
+                    style={{
+                        flexGrow: 1,
+                        paddingHorizontal: 24,
+                        paddingTop: 40,
+                    }}
+                    showsVerticalScrollIndicator={false}
+                    keyboardShouldPersistTaps="handled"
+                >
+                    <View className="w-full bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg">
+                        {/* Logo e identidad */}
+                        <View className="justify-center items-center mb-8">
+                            <Image
+                                source={require("@/assets/logo.png")}
+                                style={{ width: 150, height: 150 }}
+                                className="w-24 h-24 mb-4 rounded-full bg-white"
+                            />
+                            <Text className="text-4xl font-bold text-center text-black dark:text-white">
+                                Canasta Smart
+                            </Text>
+                            <Text className="text-gray-500 dark:text-gray-400 text-center mt-2 text-sm">
+                                Accede a tu cuenta para continuar
+                            </Text>
+                        </View>
 
-                {/* Inputs */}
-                <View className="mb-4">
-                    <TextInput
-                        placeholder="Correo electrónico"
-                        placeholderTextColor={theme.muted}
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                        onFocus={() => setEmailFocus(true)}
-                        onBlur={() => setEmailFocus(false)}
-                        className={`
+                        {/* Inputs */}
+                        <View className="mb-4">
+                            <TextInput
+                                placeholder="Correo electrónico"
+                                placeholderTextColor={theme.muted}
+                                value={email}
+                                onChangeText={setEmail}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                onFocus={() => setEmailFocus(true)}
+                                onBlur={() => setEmailFocus(false)}
+                                className={`
                             w-full p-4 mb-4 rounded-2xl bg-gray-50 text-black dark:bg-gray-700 dark:text-white        
                             ${emailFocus ? 'shadow-lg' : 'shadow-md'}
                         `}
-                    />
-                    
-                    <View className="relative w-full mb-4">
-                        <TextInput
-                            placeholder="Contraseña"
-                            placeholderTextColor={theme.muted}
-                            secureTextEntry={!showPassword}
-                            value={password}
-                            onChangeText={setPassword}
-                            onFocus={() => setPasswordFocus(true)}
-                            onBlur={() => setPasswordFocus(false)}
-                            className={`
+                            />
+
+                            <View className="relative w-full mb-4">
+                                <TextInput
+                                    placeholder="Contraseña"
+                                    placeholderTextColor={theme.muted}
+                                    secureTextEntry={!showPassword}
+                                    value={password}
+                                    onChangeText={setPassword}
+                                    onFocus={() => setPasswordFocus(true)}
+                                    onBlur={() => setPasswordFocus(false)}
+                                    className={`
                                 w-full p-4 rounded-2xl bg-gray-50 text-black dark:bg-gray-700 dark:text-white                              
                                 ${passwordFocus ? 'shadow-lg' : 'shadow-md'}
                             `}
-                        />
-                        <TouchableOpacity
-                            className="absolute right-4 top-4"
-                            onPress={() => setShowPassword(!showPassword)}
-                        >
-                            <Ionicons
-                                name={showPassword ? "eye" : "eye-off"}
-                                size={24}
-                                color="gray"
-                            />
+                                />
+                                <TouchableOpacity
+                                    className="absolute right-4 top-4"
+                                    onPress={() => setShowPassword(!showPassword)}
+                                >
+                                    <Ionicons
+                                        name={showPassword ? "eye" : "eye-off"}
+                                        size={24}
+                                        color="gray"
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+                        {/* Forgot password */}
+                        <TouchableOpacity className='mb-4 w-fit self-end' onPress={() => router.replace("/forgotPassword")}>
+                            <Text className="text-blue-600 dark:text-blue-400 font-medium text-sm text-right">
+                                ¿Olvidaste tu contraseña?
+                            </Text>
                         </TouchableOpacity>
-                    </View>
-                </View>
 
-                {/* Forgot password */}
-                <TouchableOpacity className='mb-4 w-fit self-end' onPress={() => router.replace("/forgotPassword")}>
-                    <Text className="text-blue-600 dark:text-blue-400 font-medium text-sm text-right">
-                        ¿Olvidaste tu contraseña?
-                    </Text>
-                </TouchableOpacity>
-
-                {/* Botón Login */}
-                <TouchableOpacity
-                    onPress={handleLogin}
-                    disabled={loading}
-                    className={`
+                        {/* Botón Login */}
+                        <TouchableOpacity
+                            onPress={handleLogin}
+                            disabled={loading}
+                            className={`
                         w-full py-4 rounded-2xl mb-4
                         ${theme.primary ? 'bg-blue-600' : 'bg-gray-600'}
                         shadow-md
                         ${loading ? 'opacity-50' : 'opacity-100'}
                     `}
-                >
-                    <Text className="text-white text-center font-semibold text-lg">
-                        {loading ? 'Cargando...' : 'Iniciar sesión'}
-                    </Text>
-                </TouchableOpacity>
+                        >
+                            <Text className="text-white text-center font-semibold text-lg">
+                                {loading ? 'Cargando...' : 'Iniciar sesión'}
+                            </Text>
+                        </TouchableOpacity>
 
-                {/* Registro */}
-                <TouchableOpacity className='mt-2 w-fit self-center' onPress={() => router.push('/register')}>
-                    <Text className="text-center text-sm text-gray-500 dark:text-gray-400">
-                        ¿No tienes cuenta? <Text className="font-semibold text-blue-600 dark:text-blue-400">Regístrate</Text>
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        </KeyboardAvoidingView>
+                        {/* Registro */}
+                        <TouchableOpacity className='mt-2 w-fit self-center' onPress={() => router.push('/register')}>
+                            <Text className="text-center text-sm text-gray-500 dark:text-gray-400">
+                                ¿No tienes cuenta? <Text className="font-semibold text-blue-600 dark:text-blue-400">Regístrate</Text>
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </View>
     );
 }

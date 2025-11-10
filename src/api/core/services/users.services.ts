@@ -15,7 +15,8 @@ export const getDashboardUser = async () => {
         const response = await Api.get("/users/dashboard");
         return response.data;
     } catch (error: any) {
-        throw new Error(error.response?.data?.message || 'Error al cargar usuario');
+        console.log("Error del dasboard")
+        throw new Error(error.response?.data?.message || 'Error al cargar dasboard');
     }
 };
 

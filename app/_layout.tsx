@@ -1,4 +1,5 @@
 import { toastConfig } from '@/components/custom/CustomToastConfig';
+import SafeScreen from '@/components/SafeScreen';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { patchAppearanceForWeb } from "@/hooks/patchAppearanceForWeb";
 import { Slot } from 'expo-router';
@@ -17,7 +18,9 @@ export default function RootLayout() {
     return (
         <AuthProvider>
             <StatusBar barStyle="default" />
-            <Slot />
+            <SafeScreen>
+                <Slot />
+            </SafeScreen>
             <Toast config={toastConfig} />
         </AuthProvider>
     );

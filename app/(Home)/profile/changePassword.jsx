@@ -1,3 +1,4 @@
+import { changeUserPassword } from "@/api/core/services/users.services";
 import { useUser } from "@/hooks/useUser";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -13,7 +14,6 @@ import {
     View,
 } from "react-native";
 import Toast from "react-native-toast-message";
-import { changeUserPassword } from "../../../api/core/services/users.services";
 
 
 export default function ChangePassword() {

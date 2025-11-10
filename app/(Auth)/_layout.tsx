@@ -4,17 +4,19 @@ import { useUser } from '@/hooks/useUser';
 import { Redirect, Stack } from 'expo-router';
 import { ActivityIndicator, View } from 'react-native';
 
-
 export default function AuthLayout() {
     const { user, loading } = useUser();
     const colorScheme = useColorScheme();
 
     const theme = colorScheme === "dark" ? colors.dark : colors.light;
 
-    if (!loading && user) return <Redirect href={'/'} />
+    // 🚀 Si el usuario ya está logueado -> redirigir al root o dashboard
+    if (!loading && user) {
+        return <Redirect href="/" />;
+    }
 
-    // Mientras carga user, mostrar loader para evitar "flash" de auth screens
-    if (loading || user) {
+    // ⏳ Mientras carga (o si aún no sabemos si hay user) -> loader
+    if (loading) {
         return (
             <View
                 style={{
@@ -29,6 +31,6 @@ export default function AuthLayout() {
         );
     }
 
-
-    return <Stack screenOptions={{ headerShown: false }} />
+    // 🧑‍💻 Si no hay usuario -> mostrar pantallas de autenticación
+    return <Stack screenOptions={{ headerShown: false }} />;
 }
